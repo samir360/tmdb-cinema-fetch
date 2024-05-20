@@ -96,4 +96,8 @@ Note: Replace `12345` with the movie or person ID you wish to fetch.
 
 - The plugin might encounter errors if the TMDb API key is not provided or is invalid.
 - The data of actors and movies are not saved in the database.
+
+---
+
+I hope this README is helpful for you and your users.
 ---
