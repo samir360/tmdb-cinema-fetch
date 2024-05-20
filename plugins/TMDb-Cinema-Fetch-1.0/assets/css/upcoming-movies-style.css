@@ -1,0 +1,63 @@
+.upcoming-movie {
+    width: 100%;
+    float: left;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upcoming-movie img {
+    width: 100%;
+    height: auto;
+}
+
+.tmdb-movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.tmdb-movie-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.upcoming-movie h2 {
+    margin: 0 auto;
+}
+
+/* Reglas para teléfonos - Muestra 1 tarjeta por vez */
+@media screen and (max-width: 600px) {
+    .upcoming-movie {
+        width: 100%;
+    }
+    .main-name{
+        font-size: large;
+    }
+}
+
+/* Reglas para tablets y laptops - Muestra 2 tarjetas por vez */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .upcoming-movie {
+        width: 50%;
+    }
+    .main-name{
+        font-size: large;
+    }
+}
+
+/* Reglas para laptops y pantallas más grandes - Muestra 4 tarjetas por vez */
+@media screen and (min-width: 1025px) {
+    .upcoming-movie {
+        width: 25%;
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+    .main-name{
+        font-size: large;
+    }
+}
