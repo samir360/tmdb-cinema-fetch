@@ -30,7 +30,7 @@
     margin: 0 auto;
 }
 
-/* Reglas para teléfonos - Muestra 1 tarjeta por vez */
+/* Rules for telephones - Show 1 card at a time */
 @media screen and (max-width: 600px) {
     .upcoming-movie {
         width: 100%;
@@ -40,7 +40,7 @@
     }
 }
 
-/* Reglas para tablets y laptops - Muestra 2 tarjetas por vez */
+/* Rules for tablets and laptops - Show 2 cards at a time */
 @media screen and (min-width: 601px) and (max-width: 1024px) {
     .upcoming-movie {
         width: 50%;
@@ -50,7 +50,7 @@
     }
 }
 
-/* Reglas para laptops y pantallas más grandes - Muestra 4 tarjetas por vez */
+/* Rules for laptops and larger screens - Display 4 cards at a time */
 @media screen and (min-width: 1025px) {
     .upcoming-movie {
         width: 25%;

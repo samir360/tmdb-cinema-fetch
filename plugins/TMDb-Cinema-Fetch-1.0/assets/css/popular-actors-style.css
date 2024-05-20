@@ -25,24 +25,35 @@
     margin: 0 auto;
 }
 
-/* Reglas para teléfonos - Muestra 1 tarjeta por vez */
+/* Rules for telephones - Show 1 card at a time */
+
 @media screen and (max-width: 600px) {
     .popular-actor {
-        width: 100% !important;
+        width: 100%;
     }
     .main-name{
-        font-size:large;
+        font-size: large;
     }
 }
 
-/* Reglas para tablets y laptops - Muestra 2 tarjetas por vez */
-@media screen and (min-width: 601px) {
-    .popular-actor  {
-        width: 25% !important;
+/* Rules for tablets and laptops - Show 2 cards at a time */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .popular-actor {
+        width: 50%;
+    }
+    .main-name{
+        font-size: large;
+    }
+}
+
+/* Rules for laptops and larger screens - Display 4 cards at a time */
+@media screen and (min-width: 1025px) {
+    .popular-actor {
+        width: 25%;
         margin-top: 30px;
         padding-top: 20px;
     }
     .main-name{
-        font-size:large;
+        font-size: large;
     }
 }
