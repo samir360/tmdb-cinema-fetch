@@ -104,14 +104,14 @@ function tmdb_movie_list_shortcode($atts)
         $output = '
         <form method="get" action="' . esc_url($current_url) . '">
             <select name="sort_by">
-                <option value="popularity.desc" ' . selected($sort_by, 'popularity.desc', false) . '>Popularidad - Descendente</option>
-                <option value="popularity.asc" ' . selected($sort_by, 'popularity.asc', false) . '>Popularidad - Ascendente</option>
-                <option value="release_date.desc" ' . selected($sort_by, 'release_date.desc', false) . '>Fecha de lanzamiento - Descendente</option>
-                <option value="release_date.asc" ' . selected($sort_by, 'release_date.asc', false) . '>Fecha de lanzamiento - Ascendente</option>
-                <option value="original_title.desc" ' . selected($sort_by, 'original_title.desc', false) . '>Título original - Descendente</option>
-                <option value="original_title.asc" ' . selected($sort_by, 'original_title.asc', false) . '>Título original - Ascendente</option>
+                <option value="popularity.desc" ' . selected($sort_by, 'popularity.desc', false) . '>Popularity - Desc</option>
+                <option value="popularity.asc" ' . selected($sort_by, 'popularity.asc', false) . '>Popularity - Asc</option>
+                <option value="release_date.desc" ' . selected($sort_by, 'release_date.desc', false) . '>Release Date - Desc</option>
+                <option value="release_date.asc" ' . selected($sort_by, 'release_date.asc', false) . '>Release Date - Asc</option>
+                <option value="original_title.desc" ' . selected($sort_by, 'original_title.desc', false) . '>Original Title - Desc</option>
+                <option value="original_title.asc" ' . selected($sort_by, 'original_title.asc', false) . '>Original Title - Asc</option>
             </select>
-            <input type="text" name="query" value="' . esc_attr($query) . '" placeholder="Buscar...">
+            <input type="text" name="query" value="' . esc_attr($query) . '" placeholder="Search...">
             <input type="submit" value="Ordenar/Búsqueda">
         </form>';
 
@@ -133,13 +133,13 @@ function tmdb_movie_list_shortcode($atts)
         $output .= "<div class='tmdb-pager'>";
         if ($page > 1) {
             //$prev_page_url = add_query_arg(array('page' => $page - 1, 'sort_by' => $sort_by, 'query' => $query), $current_url);
-            $prev_page_url = esc_url(home_url("/movie-list/page/" . ($page - 1) . "/?sort_by=" . $sort_by . "&query=" . $query));
-            $output .= "<a href='" . esc_url($prev_page_url) . "'>&laquo; Anterior</a> ";
+            $prev_page_url = esc_url(home_url("/movie-list/page/" . ($page - 1)));
+            $output .= "<a href='" . esc_url($prev_page_url) . "'>&laquo; Prev</a> ";
         }
 
         //$next_page_url = add_query_arg(array('page' => $page + 1, 'sort_by' => $sort_by, 'query' => $query), $current_url);
-        $next_page_url = esc_url(home_url("/movie-list/page/" . ($page + 1) . "/?sort_by=" . $sort_by . "&query=" . $query));
-        $output .= "<a href='" . esc_url($next_page_url) . "'>Siguiente &raquo;</a>";
+        $next_page_url = esc_url(home_url("/movie-list/page/" . ($page + 1)));
+        $output .= "<a href='" . esc_url($next_page_url) . "'>Next &raquo;</a>";
         $output .= "</div>";
 
         return $output;
@@ -150,17 +150,17 @@ function tmdb_movie_list_shortcode($atts)
 add_shortcode('tmdb_movie_list', 'tmdb_movie_list_shortcode');
 
 // Fetch actors list data
-function fetch_actors_data($page, $name, $movie)
+function fetch_actors_data($page, $name = "", $movie = "")
 {
     $api_url = 'https://api.themoviedb.org/3/discover/person?api_key=' . TMDB_API_KEY . '&page=' . $page . '&sort_by=name.asc';
 
-    if (!empty($name)) {
+    /* if (!empty($name)) {
         $api_url = 'https://api.themoviedb.org/3/search/person?api_key=' . TMDB_API_KEY . '&query=' . urlencode($name) . '&page=' . $page;
     }
 
     if (!empty($movie)) {
         $api_url .= '&with_movies=' . urlencode($movie);
-    }
+    } */
 
     $response = wp_remote_get($api_url);
 
@@ -197,18 +197,19 @@ function tmdb_actor_list_shortcode($atts)
 
 
     // Fetch the actors data
-    $actors_data = fetch_actors_data($page, $name, $movie);
+    $actors_data = fetch_actors_data($page);
 
     if ($actors_data) {
         // Begin output
-        $output = '
+        /* $output = '
         <form method="get" action="' . esc_url($current_url) . '">
-            <input type="text" name="name" value="' . esc_attr($name) . '" placeholder="Buscar por nombre...">
-            <input type="text" name="movie" value="' . esc_attr($movie) . '" placeholder="Buscar por película...">
-            <input type="submit" value="Buscar">
+            <input type="text" name="name" value="' . esc_attr($name) . '" placeholder="Looking by name...">
+            <input type="text" name="movie" value="' . esc_attr($movie) . '" placeholder="Looking by movie...">
+            <input type="submit" value="Search">
         </form>';
+        */
 
-        $output .= "<div class='tmdb-actors-container'>";
+        $output = "<div class='tmdb-actors-container'>";
         foreach ($actors_data['results'] as $actor) {
             $profile_url = "https://image.tmdb.org/t/p/w500{$actor['profile_path']}";
             $person = $actor['name'];
@@ -222,18 +223,18 @@ function tmdb_actor_list_shortcode($atts)
         $output .= "</div>";
 
         // Pagination
-        $output .= "<div class='tmdb-pager'>";
+        /*$output .= "<div class='tmdb-pager'>";
         if ($page > 1) {
             //$prev_page_url = add_query_arg(array('page' => $page - 1, 'name' => $name, 'movie' => $movie), $current_url);
             $prev_page_url = esc_url(home_url("/actor-list/page/" . ($page - 1) . "/?name=" . $name . "&movie=" . $movie));
-            $output .= "<a href='" . esc_url($prev_page_url) . "'>&laquo; Anterior</a> ";
+            $output .= "<a href='" . esc_url($prev_page_url) . "'>&laquo; Prev</a> ";
         }
 
         $next_page_url = esc_url(home_url("/actor-list/page/" . ($page + 1) . "/?name=" . $name . "&movie=" . $movie));
         //$next_page_url = add_query_arg(array('page' => $page + 1, 'name' => $name, 'movie' => $movie), $current_url);
-        $output .= "<a href='" . esc_url($next_page_url) . "'>Siguiente &raquo;</a>";
+        $output .= "<a href='" . esc_url($next_page_url) . "'>Next &raquo;</a>";
         $output .= "</div>";
-
+ */
         return $output;
     } else {
         return 'Error: No se pudieron obtener los datos de los actores.';
