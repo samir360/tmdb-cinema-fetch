@@ -34,7 +34,7 @@ The plugin includes the following main functions:
 
 - `fetch_movies_data($page, $sort_by, $query)`: Fetches a list of movies based on the provided parameters.
 - `fetch_popular_actors_data($page)`: Fetches data for popular actors.
-- `fetch_upcoming_movies_data()`: Fetches data for upcoming movies.
+- `fetch_upcoming_movies_data($movie_id)`: Fetches data for upcoming movies.
 - `fetch_movie_trailer_data($movie_id)`: Fetches trailer data for a specific movie.
 - `fetch_watch_providers_data($movie_id)`: Fetches data on where to watch a specific movie.
 - `fetch_movie_reviews_data($movie_id)`: Fetches reviews for a specific movie.
