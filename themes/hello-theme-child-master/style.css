@@ -15,17 +15,15 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
 /* Add your custom styles here */
 
 
-.person-single-image-colletion {        
-    display: inline-flex; 
-    justify-content: center;       
-              
+.person-image-colletion {        
+    display: inline-flex;                      
 }
 
 .person-single-image{
     margin-left: 10px;
     margin-right: 10px;
-    height: 250px;
-    width: 200px;
+    height: 300px;
+    width: 250px;
     padding: 3px;
     border-radius: 25%;
     border: black;
